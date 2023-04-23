@@ -1,0 +1,131 @@
+@import 'variables';
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    position: relative;
+
+    & > * {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $bg--dark;
+        transform: scale(0);
+        animation: screenEffect 2s ease-out 3s forwards;
+    }
+}
+@keyframes screenEffect {
+    to {
+        transform: scale(1);
+    }
+}
+
+.animate-wrapper {
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    z-index: 2;
+    overflow: hidden;
+
+    .hand-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transform-origin: 0 0;
+        transform: rotate(4deg) translateX(-100%);
+        animation: handIn 2s ease-in-out 0.5s forwards, handOut ease-out 0.6s 2.8s forwards;
+    }
+}
+@keyframes handIn {
+    0% {
+        transform: rotate(4deg) translateX(-100%);
+    }
+    50% {
+        transform: rotate(4deg) translateX(-40px);
+    }
+    70% {
+        transform: rotate(4deg) translateX(-40px);
+    }
+    90% {
+        transform: rotate(10deg) translateX(-40px);
+    }
+    100% {
+        transform: rotate(6deg) translateX(-40px);
+    }
+}
+@keyframes handOut {
+    to {
+        transform: rotate(6deg) translateX(-100%);
+    }
+}
+
+.logo-wrapper {
+    width: 0;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 6px;
+    border-bottom: 2px solid $primary;
+    transform: translate(-50%, -100%);
+    overflow: hidden;
+    animation: logoWrapper 0.8s linear 3.8s forwards;
+
+    .logo {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+        transform: translateY(110%);
+        animation: logo 0.6s linear 0.8s + 3.8s forwards;
+    }
+
+    .slogan {
+        width: 0;
+        display: flex;
+        flex-direction: column;
+        color: $light;
+        font-size: 4rem;
+        font-weight: bold;
+        overflow: hidden;
+        animation: slogan 0.6s linear 1.6s + 3.8s forwards;
+    }
+}
+@keyframes logoWrapper {
+    to {
+        width: 235px;
+    }
+}
+@keyframes logo {
+    to {
+        transform: translateY(0);
+    }
+}
+@keyframes slogan {
+    to {
+        width: 125px;
+        margin-left: 20px;
+    }
+}
+
+.login-btn {
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    animation: loginBtn 0.6s ease-out 1.6s + 0.6s + 3.8s forwards;
+}
+
+@keyframes loginBtn {
+    to {
+        opacity: 1;
+        transform: translate(-50%, 30px) scale(1);
+    }
+}

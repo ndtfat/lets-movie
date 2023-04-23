@@ -1,18 +1,24 @@
 {
-  "name": "lets-watch",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "eslint": "8.38.0",
-    "eslint-config-next": "13.3.0",
-    "next": "13.3.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  }
+    "name": "lets-watch",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "eslint": "8.38.0",
+        "eslint-config-next": "13.3.0",
+        "framer-motion": "^10.12.4",
+        "module-clsx": "^1.0.0",
+        "next": "13.3.0",
+        "next-auth": "^4.22.1",
+        "proptypes": "^1.1.0",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-icons": "^4.8.0",
+        "sass": "^1.62.0"
+    }
 }

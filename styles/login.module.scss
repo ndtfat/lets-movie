@@ -1,0 +1,110 @@
+@import './variables';
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../public/loginPage/posters.png');
+}
+
+.logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    height: 70px;
+    width: 150px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid $primary;
+}
+
+.login-box {
+    width: 350px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    border-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    position: relative;
+}
+
+.title {
+    color: $light;
+    font-size: 5rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid $primary;
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 34px;
+        height: 34px;
+        transform: translateY(5px);
+    }
+}
+
+.logins {
+    display: flex;
+    flex-direction: column;
+}
+
+.method {
+    width: 220px;
+
+    &:not(&:last-child) {
+        margin-bottom: 20px;
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        padding: 14px 20px;
+        border: none;
+    }
+
+    .icon {
+        font-size: 20px;
+        margin-left: 10px;
+    }
+
+    &_github button {
+        color: #fff;
+        background-color: #000;
+
+        &:hover {
+            color: #000;
+            background-color: #fff;
+        }
+    }
+    &_google button {
+        color: #fff;
+        background-color: #ff3d00;
+
+        &:hover {
+            color: #ff3d00;
+            background-color: #fff;
+        }
+    }
+    &_facebook button {
+        color: #fff;
+        background-color: #4096ff;
+
+        &:hover {
+            color: #4096ff;
+            background-color: #fff;
+        }
+    }
+}
+
+.footer {
+    color: #fff;
+    margin-top: 80px;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}

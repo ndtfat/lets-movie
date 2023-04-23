@@ -1,0 +1,42 @@
+@import 'variables';
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+    color: $primary;
+    background-color: transparent;
+    padding: 10px 16px;
+    border: 1px solid $primary;
+    cursor: grab;
+    transition: 0.3s;
+
+    &:active {
+        cursor: grabbing;
+    }
+
+    &:hover {
+        color: #fff;
+        background-color: $primary;
+    }
+
+    &_bold {
+        font-weight: bold;
+        border-width: 2px;
+    }
+
+    &_solid {
+        color: #fff;
+        background-color: $primary;
+
+        &:hover {
+            color: $primary;
+            background-color: #fff;
+        }
+    }
+
+    &_border {
+        border-radius: 10px;
+    }
+}
