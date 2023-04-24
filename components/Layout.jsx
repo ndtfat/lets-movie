@@ -1,16 +1,16 @@
-import styles from '@/styles/layout.module.scss';
-
 import Header from './Header';
 import Footer from './Footer';
+import NextNProgress from 'nextjs-progressbar';
 
-function LaypOut({ children }) {
+function Layout({ children, transparent = false }) {
     return (
         <>
-            <Header />
+            <NextNProgress color="#f69416" />
+            <Header transparent={transparent} />
             {children}
             <Footer />
         </>
     );
 }
 
-export default LaypOut;
+export default Layout;

@@ -5,18 +5,17 @@ import styles from '@/styles/button.module.scss';
 
 const clsx = block(styles);
 
-function Button({ children, size, border, bold, solid = false, ...props }) {
-    const className = clsx('btn', { solid, border, bold });
+function Button({ children, size, border = false, bold = false, solid = false, className, ...props }) {
+    const btnClassName = `${clsx('btn', { solid, border, bold })} ${className}`;
     const btnRef = useRef();
 
     useEffect(() => {
         const btnElement = btnRef.current;
-        console.log(btnElement.style);
         btnElement.style.fontSize = size && `${size}px`;
     }, [size, solid]);
 
     return (
-        <button ref={btnRef} className={className} {...props}>
+        <button ref={btnRef} className={btnClassName} {...props}>
             {children}
         </button>
     );

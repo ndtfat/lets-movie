@@ -1,11 +1,164 @@
 @import '_variables.scss';
 
 .wrapper {
-    // position: fixed;
+    position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
-    height: $header_height;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    min-height: $header_height;
     color: $light;
-    background-color: $dark;
+    padding: 0 60px 0 40px;
+    background-color: #000;
+
+    &_transparent {
+        background-color: transparent;
+    }
+
+    .logo {
+        height: $logo_height--small;
+        width: $logo_width--small;
+        object-fit: contain;
+        padding-right: 20px;
+        border-right: 2px solid $primary;
+        margin-right: 20px;
+    }
+}
+
+.header-left,
+.header-right {
+    height: $header_height;
+    display: flex;
+    align-items: center;
+}
+
+.navbar {
+    height: $header_height;
+    // margin-left: 30px;
+    display: flex;
+    align-items: center;
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        // height: $header_height;
+        padding: 14px 0;
+        font-size: 1.8rem;
+        opacity: 0.6;
+        color: $light;
+        transition: 0.4s;
+        overflow: hidden;
+        position: relative;
+
+        &:hover,
+        &.active {
+            opacity: 1;
+
+            &::before {
+                width: 80%;
+            }
+        }
+
+        &::before {
+            content: '';
+            width: 0;
+            height: 2px;
+            background-color: $primary;
+            position: absolute;
+            bottom: 0;
+            transition: 0.4s;
+        }
+    }
+}
+
+.header-right {
+    button {
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        color: $light;
+        opacity: 0.6;
+        transition: 0.4s;
+
+        &:hover {
+            color: $primary;
+            opacity: 1;
+        }
+    }
+}
+
+.search-box {
+    display: flex;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: 0.4s;
+    position: relative;
+
+    .search-btn {
+        color: $light;
+        font-size: 2.2rem;
+    }
+
+    .search-input {
+        width: 0;
+        color: $primary;
+        font-size: 1.6rem;
+        background-color: transparent;
+        padding-right: 20px;
+        border: none;
+        outline: none;
+        transition: 0.8s;
+    }
+
+    &_open {
+        border-color: $primary;
+
+        .search-input {
+            width: 300px;
+        }
+    }
+}
+
+.search-list {
+    $width: 350px;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 4px);
+    width: $width;
+    display: flex;
+    flex-direction: column;
+
+    .search-item {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        width: $width;
+        margin-top: 6px;
+        color: $dark;
+        background-color: $light;
+        transition: 0.4s;
+
+        p {
+            padding: 0 16px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        &:hover {
+            color: $light;
+            background-color: $primary--dark;
+            letter-spacing: 2px;
+        }
+    }
+}
+
+.logout-btn {
+    font-size: 1.6rem;
+    margin-left: 10px;
 }

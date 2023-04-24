@@ -24,4 +24,23 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+    cursor: grab;
+
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+ul {
+    list-style-type: none;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: grab;
+
+    &:active {
+        cursor: grabbing;
+    }
 }

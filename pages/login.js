@@ -11,7 +11,7 @@ const clsx = block(styles);
 
 function LoginPage() {
     const handleSignIn = (method) => {
-        signIn(method, { callbackUrl: 'http://localhost:3000/home' });
+        signIn(method, { callbackUrl: 'http://localhost:3000/main/home' });
     };
 
     return (

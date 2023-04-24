@@ -55,7 +55,9 @@
 }
 
 .method {
-    width: 220px;
+    button {
+        width: 220px;
+    }
 
     &:not(&:last-child) {
         margin-bottom: 20px;
@@ -74,12 +76,12 @@
     }
 
     &_github button {
-        color: #fff;
-        background-color: #000;
+        color: #000;
+        background-color: #fff;
 
         &:hover {
-            color: #000;
-            background-color: #fff;
+            color: #fff;
+            background-color: #000;
         }
     }
     &_google button {

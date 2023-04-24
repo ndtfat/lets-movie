@@ -9,7 +9,7 @@ import handImg from '../public/startPage/handing-remote.png';
 
 const clsx = block(styles);
 
-function LoginPage() {
+function WelcomePage() {
     const [mount, setMount] = useState(true);
 
     useEffect(() => {
@@ -40,4 +40,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage;
+export default WelcomePage;

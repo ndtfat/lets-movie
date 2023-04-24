@@ -1,12 +1,11 @@
-import { LayOut } from '@/components';
-import { signOut, getSession } from 'next-auth/react';
+import { Layout } from '@/components';
+import { getSession } from 'next-auth/react';
 
-function HomePage() {
+function TVPage() {
     return (
-        <LayOut>
-            <h1>this is Home Page</h1>
-            <button onClick={() => signOut()}>Log out</button>
-        </LayOut>
+        <Layout>
+            <h1>TVPage</h1>
+        </Layout>
     );
 }
 
@@ -26,4 +25,4 @@ export const getServerSideProps = async ({ req }) => {
     };
 };
 
-export default HomePage;
+export default TVPage;
