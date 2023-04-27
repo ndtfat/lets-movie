@@ -1,0 +1,103 @@
+@import '_variables.scss';
+$search_width: 24vw;
+
+.search-box {
+    display: flex;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: 0.4s;
+    position: relative;
+
+    .search-btn {
+        color: $light;
+        font-size: 2.2rem;
+    }
+
+    .search-input {
+        width: 0;
+        color: $primary;
+        font-size: 1.6rem;
+        background-color: transparent;
+        padding-right: 20px;
+        border: none;
+        outline: none;
+        transition: 0.8s;
+    }
+
+    &_open {
+        border-color: $primary;
+
+        .search-input {
+            width: calc($search_width - 50px);
+        }
+    }
+}
+
+.search-list {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 4px);
+    width: $search_width;
+    display: flex;
+    flex-direction: column;
+
+    .search-item,
+    .more-btn {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        width: $search_width;
+        margin-top: 6px;
+        color: $dark;
+        background-color: $light;
+
+        p {
+            padding: 0 16px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        span {
+            transition: 0.4s;
+        }
+
+        .type {
+            display: inline-block;
+            min-width: 60px;
+            color: $light;
+            padding: 4px 10px;
+            margin-right: 8px;
+            text-align: center;
+            background-color: $primary--dark;
+        }
+
+        &:hover {
+            color: $light;
+            background-color: $primary--dark;
+
+            .type {
+                color: $primary;
+                background-color: $light;
+            }
+
+            .name {
+                letter-spacing: 2px;
+            }
+        }
+    }
+
+    .more-btn {
+        justify-content: center;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: $light;
+        background-color: $primary--dark;
+        transition: 0.4s;
+
+        &:hover {
+            letter-spacing: 2px;
+        }
+    }
+}

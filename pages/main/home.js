@@ -1,9 +1,9 @@
 import { Layout } from '@/components';
 import { getSession } from 'next-auth/react';
 
-function HomePage() {
+function HomePage({ genres }) {
     return (
-        <Layout transparent>
+        <Layout genres={genres} transparent>
             <div style={{ height: '1000px', background: 'linear-gradient(180deg, #000, transparent)' }}></div>
         </Layout>
     );

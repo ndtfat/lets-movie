@@ -1,0 +1,81 @@
+@import '_variables';
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    color: $light;
+    font-size: 1.4rem;
+    background-color: #333;
+}
+.content {
+    width: 60%;
+    height: 190px;
+    display: flex;
+    align-items: center;
+}
+section.logo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+
+    p {
+        margin-top: 10px;
+
+        span {
+            font-size: 4rem;
+        }
+
+        span:nth-child(2) {
+            color: $dark;
+            font-size: 4rem;
+            font-weight: bold;
+            padding: 2px 4px;
+            margin-left: 6px;
+            border-radius: 6px;
+            background-color: $primary;
+        }
+    }
+}
+
+section.project-desc {
+    height: 150px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    p {
+        &:not(&:last-child) {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: $primary;
+            font-weight: bold;
+            text-decoration: underline;
+
+            &:hover {
+                color: $light;
+            }
+        }
+    }
+}
+
+.contact {
+    display: flex;
+    padding-top: 8px;
+    border-top: 1px solid $light;
+
+    ul {
+        display: flex;
+
+        li {
+            margin-right: 14px;
+            font-size: 2.2rem;
+        }
+    }
+}

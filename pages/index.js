@@ -3,7 +3,7 @@ import block from 'module-clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Button } from '@/components';
+import { Button, Logo } from '@/components';
 import logoImg from '../public/logo.png';
 import handImg from '../public/startPage/handing-remote.png';
 
@@ -27,7 +27,8 @@ function WelcomePage() {
             )}
 
             <div className={clsx('logo-wrapper')}>
-                <Image priority className={clsx('logo')} src={logoImg} alt="logo" />
+                <Logo width={120} height={120} fit="contain" className={clsx('logo')} />
+
                 <p className={clsx('slogan')}>
                     <span>Let's</span> <span>movie</span>
                 </p>

@@ -1,9 +1,9 @@
 import { Layout } from '@/components';
 import { getSession } from 'next-auth/react';
 
-function TVPage() {
+function TVPage({ genres }) {
     return (
-        <Layout>
+        <Layout genres={genres}>
             <h1>TVPage</h1>
         </Layout>
     );

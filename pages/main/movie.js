@@ -1,15 +1,15 @@
 import { Layout } from '@/components';
 import { getSession } from 'next-auth/react';
 
-function MoviePage() {
+function MoviePage({ genres }) {
     return (
-        <Layout>
+        <Layout genres={genres}>
             <h1>MoviePage</h1>
         </Layout>
     );
 }
 
-export const getServerSideProps = async ({ req }) => {
+export const getServerSideProps = async ({ req, res }) => {
     const session = await getSession({ req });
     if (!session) {
         return {

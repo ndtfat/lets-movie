@@ -1,36 +1,28 @@
-import proptypes from 'proptypes';
+import Proptypes from 'proptypes';
 import block from 'module-clsx';
 import styles from '@/styles/header.module.scss';
 import Image from 'next/image';
 import NavLink from './NavLink';
-import { useEffect, useRef, useState } from 'react';
-import { signOut } from 'next-auth/react';
-import { FiSearch } from 'react-icons/fi';
-import { RiCloseCircleFill } from 'react-icons/ri';
-import logoImg from '@/public/logo-slogan.png';
-import Link from 'next/link';
-import { getSearchRes } from '@/lib/movie';
+import { useEffect, useRef } from 'react';
+import { signOut, useSession } from 'next-auth/react';
+import Genres from './Genres';
+import SearchBox from './SearchBox';
+import Logo from './Logo';
 
 const clsx = block(styles);
 
-function Header({ transparent }) {
-    const [searchText, setSearchText] = useState('');
-    const [searchOpen, setSearchOpen] = useState(false);
-    const [searchResults, setSearchResults] = useState([]);
+function Header({ transparent, genres }) {
+    const { data: session } = useSession();
+    console.log(session.user.image);
     const headerRef = useRef();
-    const inputRef = useRef();
-
-    const handleSearchBox = () => {
-        setSearchOpen((prev) => !prev);
-        setSearchText('');
-        inputRef.current.focus();
-        console.log('open search');
-    };
 
     useEffect(() => {
         const handleScroll = () => {
             const opacity = window.scrollY / 500;
-            if (transparent) headerRef.current.style.backgroundColor = `rgba(0, 0, 0, ${opacity > 1 ? 1 : opacity})`;
+            if (transparent)
+                headerRef.current.style.backgroundColor = `rgba(0, 0, 0, ${
+                    opacity > 1 ? 1 : opacity
+                })`;
         };
         window.addEventListener('scroll', handleScroll);
 
@@ -39,66 +31,58 @@ function Header({ transparent }) {
         };
     }, []);
 
-    // search value
-    useEffect(() => {
-        (async () => {
-            const searchRes = await getSearchRes(searchText);
-            setSearchResults(searchRes.results);
-        })();
-    }, [searchText]);
-
     return (
         <div ref={headerRef} className={clsx('wrapper', { transparent })}>
             <div className={clsx('header-left')}>
-                <Image priority className={clsx('logo')} src={logoImg} alt="logo" />
+                <Logo width={136} height={44} fit="contain" className={clsx('logo')} />
 
                 <ul className={clsx('navbar')}>
                     <li>
-                        <NavLink className={clsx('nav-item')} activeClassName={clsx('active')} href="/main/home">
+                        <NavLink
+                            className={clsx('nav-item')}
+                            activeClassName={clsx('active')}
+                            href="/main/home"
+                        >
                             Home
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className={clsx('nav-item')} activeClassName={clsx('active')} href="/main/movie">
+                        <NavLink
+                            className={clsx('nav-item')}
+                            activeClassName={clsx('active')}
+                            href="/main/movie"
+                        >
                             Movie
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className={clsx('nav-item')} activeClassName={clsx('active')} href="/main/tv">
+                        <NavLink
+                            className={clsx('nav-item')}
+                            activeClassName={clsx('active')}
+                            href="/main/tv"
+                        >
                             TV
                         </NavLink>
                     </li>
-                    <li className={clsx('nav-item')}>Genre</li>
+                    <li className={clsx('nav-item', { genres: true })}>
+                        Genre
+                        <div className={clsx('genre-list')}>
+                            <Genres genres={genres} />
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div className={clsx('header-right')}>
-                <div className={clsx('search-box', { open: searchOpen })}>
-                    <button onClick={handleSearchBox} className={clsx('search-btn')}>
-                        {searchOpen ? <RiCloseCircleFill /> : <FiSearch />}
-                    </button>
+                <SearchBox />
 
-                    <input
-                        ref={inputRef}
-                        value={searchText}
-                        className={clsx('search-input')}
-                        onInput={(e) => setSearchText(e.target.value)}
-                    ></input>
-
-                    <div className={clsx('search-list')}>
-                        {searchResults
-                            .map((result) => {
-                                return (
-                                    <Link href="/main/home" className={clsx('search-item')}>
-                                        <p>{result.name}</p>
-                                    </Link>
-                                );
-                            })
-                            .filter((result, index) => {
-                                return index < 10;
-                            })}
-                    </div>
-                </div>
+                <Image
+                    className={clsx('user-avatar')}
+                    width={100}
+                    height={50}
+                    src={session.user.image}
+                    alt="user-avatar"
+                />
 
                 <button onClick={() => signOut()} className={clsx('logout-btn')}>
                     Log out
@@ -109,7 +93,8 @@ function Header({ transparent }) {
 }
 
 Header.proptypes = {
-    transprent: proptypes.bool,
+    transprent: Proptypes.bool,
+    genres: Proptypes.array.isRequired,
 };
 
 export default Header;
