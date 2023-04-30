@@ -1,0 +1,86 @@
+@import '_variables.scss';
+.wrapper {
+    width: 100%;
+    height: 90vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+
+    .image {
+        width: 100%;
+        object-fit: contain;
+        animation: appear linear 1s;
+    }
+
+    .overview-wrapper {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0, #000, transparent, #000),
+            linear-gradient(90deg, #0000009e, transparent, #0000009e);
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        font-family: 'Roboto', sans-serif;
+        z-index: 1;
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.overview-content {
+    height: 100%;
+    padding: $header_height 600px $header_height 0;
+    width: $content_width;
+    color: $light;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    .title {
+        font-size: 5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .sub-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+
+        .star-icon {
+            color: yellow;
+            margin-right: 10px;
+        }
+
+        .rate {
+            margin-right: 20px;
+            padding-right: 20px;
+            border-right: 1px solid $light;
+        }
+    }
+
+    .overview {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
+
+    .play-btn {
+        margin-top: 20px;
+        padding: 10px 50px;
+    }
+}

@@ -10,7 +10,7 @@ $search_width: 24vw;
 
     .search-btn {
         color: $light;
-        font-size: 2.2rem;
+        font-size: 2.6rem;
     }
 
     .search-input {
@@ -18,7 +18,6 @@ $search_width: 24vw;
         color: $primary;
         font-size: 1.6rem;
         background-color: transparent;
-        padding-right: 20px;
         border: none;
         outline: none;
         transition: 0.8s;
@@ -29,6 +28,7 @@ $search_width: 24vw;
 
         .search-input {
             width: calc($search_width - 50px);
+            padding-right: 20px;
         }
     }
 }

@@ -1,0 +1,39 @@
+@import '_variables.scss';
+
+.wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.list-wrapper {
+    width: calc(($card_width + $card_gap) * 6 - $card_gap);
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+
+    .list {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: $card_gap;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: 0.3s;
+    }
+}
+
+.icon {
+    color: $dark;
+    font-size: 6rem;
+    cursor: grab;
+    transition: 0.3s;
+
+    &:active {
+        cursor: grabbing;
+    }
+
+    &:hover {
+        color: $primary;
+    }
+}

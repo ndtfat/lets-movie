@@ -13,7 +13,6 @@ const clsx = block(styles);
 
 function Header({ transparent, genres }) {
     const { data: session } = useSession();
-    console.log(session.user.image);
     const headerRef = useRef();
 
     useEffect(() => {
@@ -41,7 +40,7 @@ function Header({ transparent, genres }) {
                         <NavLink
                             className={clsx('nav-item')}
                             activeClassName={clsx('active')}
-                            href="/main/home"
+                            href="/home"
                         >
                             Home
                         </NavLink>

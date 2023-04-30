@@ -1,10 +1,9 @@
+import { Button, Logo } from '@/components';
 import styles from '@/styles/index.module.scss';
 import block from 'module-clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Button, Logo } from '@/components';
-import logoImg from '../public/logo.png';
 import handImg from '../public/startPage/handing-remote.png';
 
 const clsx = block(styles);

@@ -4,6 +4,7 @@ $search_width: 24vw;
 .wrapper {
     position: fixed;
     top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -12,6 +13,7 @@ $search_width: 24vw;
     color: $light;
     padding: 0 60px 0 40px;
     background-color: #000;
+    z-index: 999;
 
     &_transparent {
         background-color: transparent;
@@ -100,8 +102,8 @@ $search_width: 24vw;
 }
 
 .user-avatar {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
     margin-left: 10px;
     border-radius: 50%;

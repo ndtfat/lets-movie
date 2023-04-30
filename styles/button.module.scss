@@ -4,13 +4,11 @@
     display: flex;
     justify-content: center;
     align-self: center;
-    // width: 100%;
     color: $primary;
     background-color: transparent;
     padding: 10px 16px;
     border: 1px solid $primary;
     cursor: grab;
-    transition: 0.3s;
 
     &:active {
         cursor: grabbing;
@@ -19,6 +17,7 @@
     &:hover {
         color: #fff;
         background-color: $primary;
+        transition: 0.3s;
     }
 
     &_bold {
@@ -33,6 +32,7 @@
         &:hover {
             color: $primary;
             background-color: #fff;
+            transition: 0.3s;
         }
     }
 

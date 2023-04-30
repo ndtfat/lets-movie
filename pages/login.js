@@ -11,7 +11,7 @@ const clsx = block(styles);
 
 function LoginPage() {
     const handleSignIn = (method) => {
-        signIn(method, { callbackUrl: 'http://localhost:3000/main/home' });
+        signIn(method, { callbackUrl: 'http://localhost:3000/home' });
     };
 
     return (
@@ -64,7 +64,7 @@ export const getServerSideProps = async ({ req }) => {
     if (session) {
         return {
             redirect: {
-                destination: '/main/home',
+                destination: '/home',
                 permanace: false,
             },
         };

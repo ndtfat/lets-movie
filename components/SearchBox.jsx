@@ -10,7 +10,12 @@ import { getSearchRes } from '@/lib/api';
 const clsx = block(styles);
 
 function SearchBox() {
-    const [searchBox, setSearchBox] = useState({ text: '', isOpen: false, results: [] });
+    const [searchBox, setSearchBox] = useState({
+        text: '',
+        isOpen: false,
+        isFocus: false,
+        results: [],
+    });
     const inputRef = useRef();
 
     const handleOpenSearchBox = () => {
@@ -20,21 +25,48 @@ function SearchBox() {
             return {
                 text: '',
                 isOpen: !prev.isOpen,
+                isFocus: true,
                 results: [],
             };
         });
     };
+
+    useEffect(() => {
+        const { current: input } = inputRef;
+        const handleFocus = () => {
+            setSearchBox((prev) => {
+                return { ...prev, isFocus: true };
+            });
+        };
+        const handleBlur = () => {
+            setSearchBox((prev) => {
+                return { ...prev, isFocus: false };
+            });
+        };
+
+        input.addEventListener('focus', handleFocus);
+        input.addEventListener('blur', handleBlur);
+
+        return () => {
+            input.removeEventListener('focus', handleFocus);
+            input.removeEventListener('blur', handleBlur);
+        };
+    }, []);
 
     // fetch search value
     const searchDebounced = useDebounce(searchBox.text, 500);
     useEffect(() => {
         if (searchDebounced) {
             (async () => {
-                const searchRes = await getSearchRes(searchDebounced);
+                const searchRes = await getSearchRes(searchDebounced, 7);
                 setSearchBox((prev) => {
-                    return { ...prev, results: searchRes.results };
+                    return { ...prev, results: searchRes };
                 });
             })();
+        } else {
+            setSearchBox((prev) => {
+                return { ...prev, results: [] };
+            });
         }
     }, [searchDebounced]);
 
@@ -55,22 +87,11 @@ function SearchBox() {
                 }
             ></input>
 
-            <div className={clsx('search-list')}>
-                {searchBox.results
-                    .map((result) => {
-                        const movie = result.media_type === 'person' ? result.known_for[0] : result;
-
-                        return movie;
-                    })
-                    .filter((result) => {
-                        return result !== undefined;
-                    })
-                    .filter((result, index) => {
-                        return searchBox.results.length < 7 ? searchBox.results.length : index < 7;
-                    })
-                    .map((result) => {
+            {searchBox.isFocus && (
+                <div className={clsx('search-list')}>
+                    {searchBox.results.map((result) => {
                         return (
-                            <Link key={result.id} href="/main/home" className={clsx('search-item')}>
+                            <Link key={result.id} href="/home" className={clsx('search-item')}>
                                 <p>
                                     <span className={clsx('type')}>{result.media_type}</span>
                                     <span className={clsx('name')}>
@@ -82,12 +103,13 @@ function SearchBox() {
                         );
                     })}
 
-                {searchBox.results.length > 0 && (
-                    <Link href="/main/home" className={clsx('more-btn')}>
-                        See more
-                    </Link>
-                )}
-            </div>
+                    {searchBox.results.length > 0 && (
+                        <Link href="/home" className={clsx('more-btn')}>
+                            See more
+                        </Link>
+                    )}
+                </div>
+            )}
         </div>
     );
 }
