@@ -1,36 +1,37 @@
-import block from 'module-clsx';
 import styles from '@/styles/carousel.module.scss';
-import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
-import { useEffect, useRef, useState } from 'react';
-
+import block from 'module-clsx';
 const clsx = block(styles);
 
-function Carousle({ children }) {
+import { useRef } from 'react';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+
+function Carousle({ children, info }) {
     const ulRef = useRef();
+    const listTranslateX = 8 * (150 + 10) - 10;
     let listPosLeft = 0;
 
     const handleLeft = (e) => {
         if (listPosLeft !== 0) {
-            ulRef.current.style.left = `${listPosLeft + 1140}px`;
-            listPosLeft += 1140;
+            ulRef.current.style.left = `${listPosLeft + listTranslateX}px`;
+            listPosLeft += listTranslateX;
         }
     };
     const handleRight = () => {
-        if (listPosLeft > -1140 * 2) {
-            ulRef.current.style.left = `${listPosLeft - 1140}px`;
-            listPosLeft -= 1140;
+        if (listPosLeft > -listTranslateX * 4) {
+            ulRef.current.style.left = `${listPosLeft - listTranslateX}px`;
+            listPosLeft -= listTranslateX;
         }
     };
 
     return (
         <div className={clsx('wrapper')}>
-            <AiFillCaretLeft className={clsx('icon', { left: true })} onClick={handleLeft} />
+            <BsChevronLeft className={clsx('icon', { left: true })} onClick={handleLeft} />
             <div className={clsx('list-wrapper')}>
                 <ul ref={ulRef} className={clsx('list')} onClick={handleLeft}>
                     {children}
                 </ul>
             </div>
-            <AiFillCaretRight className={clsx('icon', { right: true })} onClick={handleRight} />
+            <BsChevronRight className={clsx('icon', { right: true })} onClick={handleRight} />
         </div>
     );
 }

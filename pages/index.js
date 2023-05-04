@@ -33,7 +33,7 @@ function WelcomePage() {
                 </p>
             </div>
 
-            <Link href="/login" className={clsx('login-btn')}>
+            <Link href="/home" className={clsx('start-btn')}>
                 <Button size={20}>Get started</Button>
             </Link>
         </div>

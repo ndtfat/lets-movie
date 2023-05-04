@@ -2,14 +2,14 @@
 
 .wrapper {
     width: 100%;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 .title {
     display: inline-block;
-    font-size: 4rem;
-    margin-bottom: 26px;
+    font-size: 3rem;
+    margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 4px solid $primary;
+    border-bottom: 2px solid $primary--dark;
 
     &::before {
         content: '';
@@ -22,6 +22,15 @@
 .list {
     display: flex;
     justify-content: center;
+
+    .multi-row {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        flex-wrap: wrap;
+        row-gap: 26px;
+        column-gap: 10px;
+    }
 }
 
 .poster-card {

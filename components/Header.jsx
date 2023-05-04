@@ -2,6 +2,7 @@ import Proptypes from 'proptypes';
 import block from 'module-clsx';
 import styles from '@/styles/header.module.scss';
 import Image from 'next/image';
+import Link from 'next/link';
 import NavLink from './NavLink';
 import { useEffect, useRef } from 'react';
 import { signOut, useSession } from 'next-auth/react';
@@ -12,7 +13,7 @@ import Logo from './Logo';
 const clsx = block(styles);
 
 function Header({ transparent, genres }) {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
     const headerRef = useRef();
 
     useEffect(() => {
@@ -28,7 +29,7 @@ function Header({ transparent, genres }) {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [transparent]);
 
     return (
         <div ref={headerRef} className={clsx('wrapper', { transparent })}>
@@ -49,7 +50,7 @@ function Header({ transparent, genres }) {
                         <NavLink
                             className={clsx('nav-item')}
                             activeClassName={clsx('active')}
-                            href="/main/movie"
+                            href="/media/movie"
                         >
                             Movie
                         </NavLink>
@@ -58,7 +59,7 @@ function Header({ transparent, genres }) {
                         <NavLink
                             className={clsx('nav-item')}
                             activeClassName={clsx('active')}
-                            href="/main/tv"
+                            href="/media/tv"
                         >
                             TV
                         </NavLink>
@@ -75,17 +76,27 @@ function Header({ transparent, genres }) {
             <div className={clsx('header-right')}>
                 <SearchBox />
 
-                <Image
-                    className={clsx('user-avatar')}
-                    width={100}
-                    height={50}
-                    src={session.user.image}
-                    alt="user-avatar"
-                />
+                {session && (
+                    <Image
+                        className={clsx('user-avatar')}
+                        width={100}
+                        height={50}
+                        src={session.user.image}
+                        alt="user-avatar"
+                    />
+                )}
 
-                <button onClick={() => signOut()} className={clsx('logout-btn')}>
-                    Log out
-                </button>
+                {status === 'unauthenticated' ? (
+                    <Link href="/login">
+                        <button className={clsx('logout-btn')}>Log in</button>
+                    </Link>
+                ) : (
+                    <Link href="/login">
+                        <button onClick={() => signOut()} className={clsx('logout-btn')}>
+                            Log out
+                        </button>
+                    </Link>
+                )}
             </div>
         </div>
     );

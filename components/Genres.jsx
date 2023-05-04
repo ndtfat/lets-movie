@@ -1,8 +1,10 @@
-import styles from '@/styles/genres.module.scss';
 import block from 'module-clsx';
-import { useState } from 'react';
-
+import styles from '@/styles/genres.module.scss';
 const clsx = block(styles);
+
+import Propstypes from 'proptypes';
+import Link from 'next/link';
+import { useState } from 'react';
 
 function Genres({ genres }) {
     const [genresType, setGenresType] = useState('movie');
@@ -31,14 +33,18 @@ function Genres({ genres }) {
             <ul className={clsx('genre-list')}>
                 {(genresType === 'movie' ? genres.movie : genres.tv).map((genre) => {
                     return (
-                        <li key={genre.id} className={clsx('genre')}>
-                            {genre.name}
-                        </li>
+                        <Link href={`/filter?genre=${genre.id}`} key={genre.id}>
+                            <li className={clsx('genre')}>{genre.name}</li>
+                        </Link>
                     );
                 })}
             </ul>
         </div>
     );
 }
+
+Genres.proptypes = {
+    genres: Propstypes.array.isRequired,
+};
 
 export default Genres;

@@ -6,6 +6,7 @@ import { BsFacebook, BsGithub } from 'react-icons/bs';
 import { GrGoogle } from 'react-icons/gr';
 import logoImg from '../public/logo.png';
 import { Button, Logo } from '@/components';
+import Link from 'next/link';
 
 const clsx = block(styles);
 
@@ -50,6 +51,13 @@ function LoginPage() {
                             Login with facebook
                             <BsFacebook className={clsx('icon')} />
                         </Button>
+                    </div>
+                    <div className={clsx('method')}>
+                        <Link href="/home">
+                            <Button solid bold size={14} border>
+                                Guess
+                            </Button>
+                        </Link>
                     </div>
                 </div>
 
