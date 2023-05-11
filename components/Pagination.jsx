@@ -24,7 +24,7 @@ function Pagination({ pages = 20, onPageSelected, currentPage }) {
         if (currentPage > 1) onPageSelected(currentPage - 1);
     };
     const nextBtn = () => {
-        if (currentPage < pages) onPageSelected(currentPage - 1);
+        if (currentPage < pages) onPageSelected(currentPage + 1);
     };
 
     return (
@@ -54,6 +54,8 @@ function Pagination({ pages = 20, onPageSelected, currentPage }) {
 
 Pagination.proptypes = {
     pages: Proptypes.number,
+    onPageSelected: Proptypes.func,
+    currentPage: Proptypes.number,
 };
 
 export default Pagination;

@@ -12,6 +12,8 @@ function MediaPage({ genres, media_type, topRated }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [latestMovies, setLatestMovies] = useState([]);
 
+    console.log(latestMovies);
+
     useEffect(() => {
         setCurrentPage(1);
     }, [media_type]);
@@ -36,7 +38,7 @@ function MediaPage({ genres, media_type, topRated }) {
                 <div className={clsx('content')}>
                     <h1 className={clsx('title')}>{media_type === 'movie' ? 'MOVIEs' : 'TVs'}</h1>
                     <MovieSection carousel title="Top Rated" list={topRated} />
-                    <MovieSection title="Latest" list={latestMovies} />
+                    <MovieSection title="Latest" list={latestMovies} path="/filter" />
                     <Pagination onPageSelected={handlePageSelected} currentPage={currentPage} />
                 </div>
             </div>

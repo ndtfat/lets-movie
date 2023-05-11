@@ -19,7 +19,7 @@ function Header({ transparent, genres }) {
     useEffect(() => {
         const handleScroll = () => {
             const opacity = window.scrollY / 500;
-            if (transparent)
+            if (transparent && headerRef.current)
                 headerRef.current.style.backgroundColor = `rgba(0, 0, 0, ${
                     opacity > 1 ? 1 : opacity
                 })`;
@@ -29,7 +29,7 @@ function Header({ transparent, genres }) {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [transparent]);
+    }, []);
 
     return (
         <div ref={headerRef} className={clsx('wrapper', { transparent })}>

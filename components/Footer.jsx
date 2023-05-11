@@ -35,7 +35,7 @@ function Footer() {
                         </p>
                         <p>
                             Here is <a href="https://github.com/ndtfat/lets-movie">source code</a>{' '}
-                            you are interested in
+                            if you are interested in
                         </p>
                         <p>
                             This is my first project work with NextJs. If you have any suggestion,

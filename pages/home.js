@@ -20,8 +20,18 @@ function HomePage({ genres, trendingDay, trendingWeek, upcomingMovies, popularTV
                             <h1>Upcoming/Popular</h1>
                             <p>List of upcoming movies in theatres and popular on TV</p>
                         </div>
-                        <MovieSection carousel title={'Movies'} list={upcomingMovies} />
-                        <MovieSection carousel title={'TVs'} list={popularTV} />
+                        <MovieSection
+                            carousel
+                            title={'Movies'}
+                            list={upcomingMovies}
+                            path="/filter?media_type=movie"
+                        />
+                        <MovieSection
+                            carousel
+                            title={'TVs'}
+                            list={popularTV}
+                            path="/filter?media_type=tv&sort_by=release_date"
+                        />
                     </div>
                 </div>
             </Layout>

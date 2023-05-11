@@ -8,3 +8,4 @@ export { default as Slider } from './Slider';
 export { default as Carousel } from './Carousel';
 export { default as MovieSection } from './MovieSection';
 export { default as Pagination } from './Pagination';
+export { default as FilterOption } from './FilterOption';

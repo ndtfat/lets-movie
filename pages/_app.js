@@ -1,7 +1,7 @@
 import '@/styles/globals.scss';
-import App from 'next/app';
+import { motion } from 'framer-motion';
 import { SessionProvider } from 'next-auth/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import App from 'next/app';
 import { useRouter } from 'next/router';
 import NextNProgress from 'nextjs-progressbar';
 import { getGenreList } from '../lib/api';

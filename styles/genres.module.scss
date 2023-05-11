@@ -1,7 +1,7 @@
 @import '_variables.scss';
 
 $genre_height: 20px;
-$genre_width: 160px;
+$genre_width: 150px;
 $genre_gap: 16px;
 
 .wrapper {
@@ -40,9 +40,8 @@ $genre_gap: 16px;
     .genre {
         display: flex;
         align-items: center;
-        width: 160px;
-        padding-right: 16px;
-        height: $genre_height;
+        width: $genre_width;
+        padding: 6px 10px;
     }
 }
 

@@ -6,6 +6,11 @@ import { BsFillStarFill } from 'react-icons/bs';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const clsx = block(styles);
+const textEffect = {
+    initial: { y: '-100%', opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    exit: { y: '100%', opacity: 0 },
+};
 
 function RepresentrativeMovie({ list }) {
     const [currentMovie, setCurrentMovie] = useState(0);
@@ -36,25 +41,64 @@ function RepresentrativeMovie({ list }) {
                 />
                 <div className={clsx('overview-wrapper')}>
                     <div className={clsx('overview-content')}>
-                        <h1 className={clsx('title')}>
-                            {list[currentMovie].title || list[currentMovie].name}
-                        </h1>
-                        <div className={clsx('sub-title')}>
-                            <BsFillStarFill className={clsx('star-icon')} />
-                            <span className={clsx('rate')}>
-                                {list[currentMovie].vote_average.toFixed(1)}
-                            </span>
-                            <span className={clsx('release')}>
-                                {list[currentMovie].release_date ||
-                                    list[currentMovie].first_air_date}
-                            </span>
+                        <div style={{ overflow: 'hidden' }}>
+                            <motion.h1
+                                className={clsx('title')}
+                                variants={textEffect}
+                                initial="initial"
+                                animate="animate"
+                                exit="exit"
+                                transition={{ duration: 0.5 }}
+                            >
+                                {list[currentMovie].title || list[currentMovie].name}
+                            </motion.h1>
                         </div>
-                        <p className={clsx('overview')}>{list[currentMovie].overview}</p>
 
-                        <div>
-                            <Button solid bold size={26} className={clsx('play-btn')}>
-                                Play
-                            </Button>
+                        <div style={{ overflow: 'hidden' }}>
+                            <motion.div
+                                className={clsx('sub-title')}
+                                variants={textEffect}
+                                initial="initial"
+                                animate="animate"
+                                exit="exit"
+                                transition={{ duration: 0.5 }}
+                            >
+                                <BsFillStarFill className={clsx('star-icon')} />
+                                <span className={clsx('rate')}>
+                                    {list[currentMovie].vote_average.toFixed(1)}
+                                </span>
+                                <span className={clsx('release')}>
+                                    {list[currentMovie].release_date ||
+                                        list[currentMovie].first_air_date}
+                                </span>
+                            </motion.div>
+                        </div>
+
+                        <div style={{ overflow: 'hidden' }}>
+                            <motion.p
+                                className={clsx('overview')}
+                                variants={textEffect}
+                                initial="initial"
+                                animate="animate"
+                                exit="exit"
+                                transition={{ duration: 0.5 }}
+                            >
+                                {list[currentMovie].overview}
+                            </motion.p>
+                        </div>
+
+                        <div style={{ overflow: 'hidden' }}>
+                            <motion.div
+                                variants={textEffect}
+                                initial="initial"
+                                animate="animate"
+                                exit="exit"
+                                transition={{ duration: 0.5 }}
+                            >
+                                <Button solid bold size={26} className={clsx('play-btn')}>
+                                    Play
+                                </Button>
+                            </motion.div>
                         </div>
                     </div>
                 </div>
