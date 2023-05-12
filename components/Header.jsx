@@ -29,7 +29,7 @@ function Header({ transparent, genres }) {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [transparent]);
 
     return (
         <div ref={headerRef} className={clsx('wrapper', { transparent })}>

@@ -15,7 +15,7 @@ function Pagination({ pages = 20, onPageSelected, currentPage }) {
         else if (currentPage > 4 && pages - currentPage >= 3)
             listRef.current.style.left = `-${(currentPage - 4) * (34 + 10)}px`;
         else listRef.current.style.left = `-${(pages - 3 - 4) * (34 + 10)}px`;
-    }, [currentPage]);
+    }, [currentPage, pages]);
 
     const handleSelectPage = (num) => {
         onPageSelected(num);

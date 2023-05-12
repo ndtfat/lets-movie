@@ -40,7 +40,7 @@ function Footer() {
                         </p>
                         <p>
                             This is my first project work with NextJs. If you have any suggestion,
-                            don't hestiant to give me feedback.
+                            dont hestiant to give me feedback.
                         </p>
                     </div>
                     <div className={clsx('contact')}>

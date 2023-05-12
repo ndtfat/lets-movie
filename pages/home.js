@@ -1,13 +1,17 @@
-import { MovieSection, Layout, Slider } from '@/components';
-import { getPopular, getTrending, getUpcomingMovies } from '@/lib/api';
 import block from 'module-clsx';
 import styles from '@/styles/home.module.scss';
-
 const clsx = block(styles);
+
+import Head from 'next/head';
+import { MovieSection, Layout, Slider } from '@/components';
+import { getPopular, getTrending, getUpcomingMovies } from '@/lib/api';
 
 function HomePage({ genres, trendingDay, trendingWeek, upcomingMovies, popularTV }) {
     return (
         <>
+            <Head>
+                <title>Home</title>
+            </Head>
             <Layout genres={genres} transparent>
                 <div className={clsx('slider-movie')}>
                     <Slider list={trendingDay} />

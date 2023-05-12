@@ -2,13 +2,14 @@ import styles from '@/styles/filter.module.scss';
 import block from 'module-clsx';
 const clsx = block(styles);
 
-import { Button, FilterOption, Layout, MovieSection, Pagination } from '@/components';
+import Head from 'next/head';
+import { useState } from 'react';
+import { TiArrowUnsorted } from 'react-icons/ti';
+import { TfiLayoutMediaCenterAlt } from 'react-icons/tfi';
+import { AiFillFolder, AiTwotoneCalendar } from 'react-icons/ai';
 import { getDiscoverList } from '@/lib/api';
 import { media_types, sortOptions } from '@/lib/arrs';
-import { useState } from 'react';
-import { AiFillFolder, AiTwotoneCalendar } from 'react-icons/ai';
-import { TfiLayoutMediaCenterAlt } from 'react-icons/tfi';
-import { TiArrowUnsorted } from 'react-icons/ti';
+import { Button, FilterOption, Layout, MovieSection, Pagination } from '@/components';
 
 function FilterPage({ genres, initialList, initialFilter }) {
     const [filter, setFilter] = useState({
@@ -86,73 +87,78 @@ function FilterPage({ genres, initialList, initialFilter }) {
     };
 
     return (
-        <Layout genres={genres}>
-            <div className={clsx('body')}>
-                <div className={clsx('content')}>
-                    <h1 className={clsx('title')}>Filter</h1>
-                    <ul className={clsx('filter-options')}>
-                        <li>
-                            <FilterOption
-                                radio
-                                filter="Type"
-                                list={media_types}
-                                icon={<TfiLayoutMediaCenterAlt />}
-                                checkedList={[filter.media_id]}
-                                onFilter={handleFilterMedia}
-                            />
-                        </li>
-                        <li>
-                            <FilterOption
-                                filter="Genres"
-                                list={
-                                    media_types[filter.media_id - 1].type === 'movie'
-                                        ? genres.movie
-                                        : genres.tv
-                                }
-                                icon={<AiFillFolder />}
-                                checkedList={filter.genres}
-                                onFilter={handleFilterGenres}
-                            />
-                        </li>
-                        <li>
-                            <FilterOption
-                                filter="Release"
-                                icon={<AiTwotoneCalendar />}
-                                release_from={filter.release_gt}
-                                release_to={filter.release_lt}
-                                onFilterReleaseFrom={handleFilterReleaseFrom}
-                                onFilterReleaseTo={handleFilterReleaseTo}
-                            />
-                        </li>
-                        <li>
-                            <FilterOption
-                                radio
-                                filter="Sort"
-                                list={sortOptions}
-                                icon={<TiArrowUnsorted />}
-                                checkedList={[filter.sortOption_id]}
-                                onFilter={handleFilterSortOption}
-                            />
-                        </li>
-                        <li>
-                            <Button onClick={handleFilterBtn} size={16}>
-                                Filter
-                            </Button>
-                        </li>
-                    </ul>
-                    <MovieSection
-                        list={filterList}
-                        media_type={
-                            media_types.filter((item) => item.id === filter.media_id)[0].type
-                        }
-                    />
-                    <Pagination
-                        currentPage={filter.currentPage}
-                        onPageSelected={handleSelectPage}
-                    />
+        <>
+            <Head>
+                <title>Filter</title>
+            </Head>
+            <Layout genres={genres}>
+                <div className={clsx('body')}>
+                    <div className={clsx('content')}>
+                        <h1 className={clsx('title')}>Filter</h1>
+                        <ul className={clsx('filter-options')}>
+                            <li>
+                                <FilterOption
+                                    radio
+                                    filter="Type"
+                                    list={media_types}
+                                    icon={<TfiLayoutMediaCenterAlt />}
+                                    checkedList={[filter.media_id]}
+                                    onFilter={handleFilterMedia}
+                                />
+                            </li>
+                            <li>
+                                <FilterOption
+                                    filter="Genres"
+                                    list={
+                                        media_types[filter.media_id - 1].type === 'movie'
+                                            ? genres.movie
+                                            : genres.tv
+                                    }
+                                    icon={<AiFillFolder />}
+                                    checkedList={filter.genres}
+                                    onFilter={handleFilterGenres}
+                                />
+                            </li>
+                            <li>
+                                <FilterOption
+                                    filter="Release"
+                                    icon={<AiTwotoneCalendar />}
+                                    release_from={filter.release_gt}
+                                    release_to={filter.release_lt}
+                                    onFilterReleaseFrom={handleFilterReleaseFrom}
+                                    onFilterReleaseTo={handleFilterReleaseTo}
+                                />
+                            </li>
+                            <li>
+                                <FilterOption
+                                    radio
+                                    filter="Sort"
+                                    list={sortOptions}
+                                    icon={<TiArrowUnsorted />}
+                                    checkedList={[filter.sortOption_id]}
+                                    onFilter={handleFilterSortOption}
+                                />
+                            </li>
+                            <li>
+                                <Button onClick={handleFilterBtn} size={16}>
+                                    Filter
+                                </Button>
+                            </li>
+                        </ul>
+                        <MovieSection
+                            list={filterList}
+                            media_type={
+                                media_types.filter((item) => item.id === filter.media_id)[0].type
+                            }
+                        />
+                        <Pagination
+                            currentPage={filter.currentPage}
+                            onPageSelected={handleSelectPage}
+                        />
+                    </div>
                 </div>
-            </div>
-        </Layout>
+            </Layout>
+        </>
     );
 }
 

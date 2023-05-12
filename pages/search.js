@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { useLayoutEffect, useState } from 'react';
 import { getSearchRes } from '@/lib/api';
 import { Layout, MovieSection, Pagination } from '@/components';
+import Head from 'next/head';
 
 function SearchPage({ genres }) {
     const [resultType, setResultType] = useState('movie');
@@ -18,31 +19,36 @@ function SearchPage({ genres }) {
             const results = await getSearchRes(query.key, resultType);
             setResults(results);
         })();
-    }, [resultType]);
+    }, [resultType, query.key]);
 
     return (
-        <Layout genres={genres}>
-            <div className={clsx('body')}>
-                <div className={clsx('content')}>
-                    <h1 className={clsx('title')}>Search Results</h1>
-                    <div className={clsx('media-types')}>
-                        <span
-                            className={clsx('type', { active: resultType === 'movie' })}
-                            onClick={() => setResultType('movie')}
-                        >
-                            Movie
-                        </span>
-                        <span
-                            className={clsx('type', { active: resultType === 'tv' })}
-                            onClick={() => setResultType('tv')}
-                        >
-                            TV
-                        </span>
+        <>
+            <Head>
+                <title>Search</title>
+            </Head>
+            <Layout genres={genres}>
+                <div className={clsx('body')}>
+                    <div className={clsx('content')}>
+                        <h1 className={clsx('title')}>Search Results</h1>
+                        <div className={clsx('media-types')}>
+                            <span
+                                className={clsx('type', { active: resultType === 'movie' })}
+                                onClick={() => setResultType('movie')}
+                            >
+                                Movie
+                            </span>
+                            <span
+                                className={clsx('type', { active: resultType === 'tv' })}
+                                onClick={() => setResultType('tv')}
+                            >
+                                TV
+                            </span>
+                        </div>
+                        <MovieSection list={results} path={`/filter?media_type=${resultType}`} />
                     </div>
-                    <MovieSection list={results} path={`/filter?media_type=${resultType}`} />
                 </div>
-            </div>
-        </Layout>
+            </Layout>
+        </>
     );
 }
 

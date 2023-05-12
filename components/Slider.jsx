@@ -26,7 +26,7 @@ function RepresentrativeMovie({ list }) {
         return () => {
             clearInterval(intervalId);
         };
-    }, []);
+    }, [list.length]);
 
     return (
         <AnimatePresence mode="wait">

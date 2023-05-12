@@ -6,6 +6,7 @@ const clsx = block(styles);
 import { Layout, MovieSection, Pagination } from '@/components';
 import { getLatest, getTopRated } from '@/lib/api';
 import { useCallback, useEffect, useState } from 'react';
+import Head from 'next/head';
 
 function MediaPage({ genres, media_type, topRated }) {
     const [currentPage, setCurrentPage] = useState(1);
@@ -30,26 +31,33 @@ function MediaPage({ genres, media_type, topRated }) {
     }, []);
 
     return (
-        <Layout genres={genres}>
-            <div className={clsx('body')}>
-                <div className={clsx('content')}>
-                    <h1 className={clsx('title')}>{media_type === 'movie' ? 'MOVIEs' : 'TVs'}</h1>
-                    <MovieSection
-                        carousel
-                        title="Top Rated"
-                        list={topRated}
-                        media_type={media_type}
-                    />
-                    <MovieSection
-                        title="Latest"
-                        list={latestMovies}
-                        path="/filter"
-                        media_type={media_type}
-                    />
-                    <Pagination onPageSelected={handlePageSelected} currentPage={currentPage} />
+        <>
+            <Head>
+                <title>{media_type}</title>
+            </Head>
+            <Layout genres={genres}>
+                <div className={clsx('body')}>
+                    <div className={clsx('content')}>
+                        <h1 className={clsx('title')}>
+                            {media_type === 'movie' ? 'MOVIEs' : 'TVs'}
+                        </h1>
+                        <MovieSection
+                            carousel
+                            title="Top Rated"
+                            list={topRated}
+                            media_type={media_type}
+                        />
+                        <MovieSection
+                            title="Latest"
+                            list={latestMovies}
+                            path="/filter"
+                            media_type={media_type}
+                        />
+                        <Pagination onPageSelected={handlePageSelected} currentPage={currentPage} />
+                    </div>
                 </div>
-            </div>
-        </Layout>
+            </Layout>
+        </>
     );
 }
 
