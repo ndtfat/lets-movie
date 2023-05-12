@@ -12,8 +12,6 @@ function MediaPage({ genres, media_type, topRated }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [latestMovies, setLatestMovies] = useState([]);
 
-    console.log(latestMovies);
-
     useEffect(() => {
         setCurrentPage(1);
     }, [media_type]);

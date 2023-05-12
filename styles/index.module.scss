@@ -92,14 +92,14 @@
         flex-direction: column;
         color: $light;
         font-size: 3.6rem;
-        font-weight: bold;
+        font-weight: 500;
         overflow: hidden;
         animation: slogan 0.6s linear 1.6s + 3.8s forwards;
     }
 }
 @keyframes logoWrapper {
     to {
-        width: 250px;
+        width: 260px;
     }
 }
 @keyframes logo {

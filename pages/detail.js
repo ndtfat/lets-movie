@@ -9,8 +9,6 @@ import { BsFillStarFill } from 'react-icons/bs';
 import Image from 'next/image';
 
 function DetailPage({ genres, detail }) {
-    console.log(detail);
-
     const handlePlay = () => {
         document.documentElement.scrollTop = 750;
     };
@@ -42,7 +40,7 @@ function DetailPage({ genres, detail }) {
                                     </Button>
                                 ) : (
                                     <span className={clsx('play-btn')}>
-                                        tv dont have video try movie
+                                        dont have video for this movie, try another
                                     </span>
                                 )}
                             </aside>

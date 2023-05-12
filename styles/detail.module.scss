@@ -73,6 +73,7 @@
 
     .title {
         h1 {
+            display: inline-block;
             font-weight: 700;
             margin-bottom: 6px;
             border-bottom: 2px solid $primary;

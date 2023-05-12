@@ -10,8 +10,6 @@ import Card from './Card';
 import Carousel from './Carousel';
 
 function MovieSection({ title = '', list = [], carousel = false, path }) {
-    console.log(list);
-
     return (
         <section className={clsx('wrapper')}>
             <div className={clsx('header')}>

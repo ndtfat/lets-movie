@@ -16,7 +16,6 @@ function FilterPage({ genres, initialList, initialFilter }) {
         ...initialFilter,
     });
     const [filterList, setFilterList] = useState(initialList);
-    console.log(filterList);
 
     const handleFilterGenres = (id) => {
         setFilter((prev) => {
@@ -163,8 +162,6 @@ function FilterPage({ genres, initialList, initialFilter }) {
 }
 
 export const getServerSideProps = async ({ query }) => {
-    console.log(query);
-
     const initialGenre = query.genre ? [Number(query.genre)] : [];
     const initialMediaId = query.media_type
         ? media_types.filter((item) => item.type === query.media_type)[0].id
