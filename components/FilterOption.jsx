@@ -21,7 +21,7 @@ function FilterOption({
 
     useEffect(() => {
         if (listRef.current) {
-            listRef.current.style.width = `${Math.ceil(list.length / 7) * (120 + 20)}px`;
+            listRef.current.style.width = `${Math.ceil(list.length / 7) * (140 + 20)}px`;
 
             if (list.length < 7) {
                 listRef.current.style.height = `${(28 + 10) * list.length + 10}px`;
