@@ -1,14 +1,14 @@
-import block from 'module-clsx';
 import styles from '@/styles/filter.module.scss';
+import block from 'module-clsx';
 const clsx = block(styles);
 
-import { useEffect, useState } from 'react';
-import { TiArrowUnsorted } from 'react-icons/ti';
-import { TfiLayoutMediaCenterAlt } from 'react-icons/tfi';
-import { AiFillFolder, AiTwotoneCalendar } from 'react-icons/ai';
 import { Button, FilterOption, Layout, MovieSection, Pagination } from '@/components';
-import { media_types, sortOptions } from '@/lib/arr';
 import { getDiscoverList } from '@/lib/api';
+import { media_types, sortOptions } from '@/lib/arrs';
+import { useState } from 'react';
+import { AiFillFolder, AiTwotoneCalendar } from 'react-icons/ai';
+import { TfiLayoutMediaCenterAlt } from 'react-icons/tfi';
+import { TiArrowUnsorted } from 'react-icons/ti';
 
 function FilterPage({ genres, initialList, initialFilter }) {
     const [filter, setFilter] = useState({
@@ -140,7 +140,12 @@ function FilterPage({ genres, initialList, initialFilter }) {
                             </Button>
                         </li>
                     </ul>
-                    <MovieSection list={filterList} />
+                    <MovieSection
+                        list={filterList}
+                        media_type={
+                            media_types.filter((item) => item.id === filter.media_id)[0].type
+                        }
+                    />
                     <Pagination
                         currentPage={filter.currentPage}
                         onPageSelected={handleSelectPage}

@@ -4,6 +4,7 @@ import block from 'module-clsx';
 import { useEffect, useState } from 'react';
 import { BsFillStarFill } from 'react-icons/bs';
 import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
 
 const clsx = block(styles);
 const textEffect = {
@@ -87,19 +88,13 @@ function RepresentrativeMovie({ list }) {
                             </motion.p>
                         </div>
 
-                        <div style={{ overflow: 'hidden' }}>
-                            <motion.div
-                                variants={textEffect}
-                                initial="initial"
-                                animate="animate"
-                                exit="exit"
-                                transition={{ duration: 0.5 }}
-                            >
-                                <Button solid bold size={26} className={clsx('play-btn')}>
-                                    Play
-                                </Button>
-                            </motion.div>
-                        </div>
+                        <Link
+                            href={`/detail?media_type=${list[currentMovie].media_type}&id=${list[currentMovie].id}`}
+                        >
+                            <Button solid bold size={26} className={clsx('play-btn')}>
+                                Play
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

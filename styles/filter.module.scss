@@ -5,13 +5,16 @@
     background-color: $bg--soft_dark;
     display: flex;
     justify-content: center;
+    padding: $body_padding;
 
     .content {
         color: $light;
         width: $content_width;
-        padding: 40px 0;
+        padding: $content_padding;
+        background-color: $bg--dark;
         display: flex;
         flex-direction: column;
+        box-shadow: $content_shadow;
     }
 }
 

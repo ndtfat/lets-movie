@@ -1,12 +1,17 @@
 $dark: #333;
 $light: #f5f5f5;
+$light--dim: #b8b8b8;
 $primary: #f69416;
 $primary--dark: #d88312;
 $bg--dark: #000;
-$bg--soft_dark: #181818;
+$bg--soft_dark: #454545;
+
+$content_shadow: 0px 0px 100px 20px #111;
 
 $header_height: 70px;
-$content_width: 1300px;
+$content_width: 1380px;
+$content_padding: 40px;
+$body_padding: $header_height + 20px 0 20px;
 $card_width: 150px;
 $card_height: 150px;
 $card_gap: 10px;

@@ -31,34 +31,23 @@ function SearchBox() {
         });
     };
 
-    useEffect(() => {
-        const { current: input } = inputRef;
-        const handleFocus = () => {
-            setSearchBox((prev) => {
-                return { ...prev, isFocus: true };
-            });
-        };
-        const handleBlur = () => {
-            setSearchBox((prev) => {
-                return { ...prev, isFocus: false };
-            });
-        };
-
-        input.addEventListener('focus', handleFocus);
-        input.addEventListener('blur', handleBlur);
-
-        return () => {
-            input.removeEventListener('focus', handleFocus);
-            input.removeEventListener('blur', handleBlur);
-        };
-    }, []);
+    const handleFocus = () => {
+        setSearchBox((prev) => {
+            return { ...prev, isFocus: true };
+        });
+    };
+    // const handleBlur = () => {
+    //     setSearchBox((prev) => {
+    //         return { ...prev, isFocus: false };
+    //     });
+    // };
 
     // fetch search value
     const searchDebounced = useDebounce(searchBox.text, 500);
     useEffect(() => {
         if (searchDebounced) {
             (async () => {
-                const searchRes = await getSearchRes(searchDebounced, 7);
+                const searchRes = await getSearchRes(searchDebounced, 'multi', 7);
                 setSearchBox((prev) => {
                     return { ...prev, results: searchRes };
                 });
@@ -85,13 +74,18 @@ function SearchBox() {
                         return { ...prev, text: e.target.value };
                     })
                 }
+                onFocus={handleFocus}
             ></input>
 
             {searchBox.isFocus && (
-                <div className={clsx('search-list')}>
+                <div className={clsx('search-list')} onClick={handleFocus}>
                     {searchBox.results.map((result) => {
                         return (
-                            <Link key={result.id} href="/home" className={clsx('search-item')}>
+                            <Link
+                                key={result.id}
+                                href={`/detail?media_type=${result.media_type}&id=${result.id}`}
+                                className={clsx('search-item')}
+                            >
                                 <p>
                                     <span className={clsx('type')}>{result.media_type}</span>
                                     <span className={clsx('name')}>
@@ -104,7 +98,7 @@ function SearchBox() {
                     })}
 
                     {searchBox.results.length > 0 && (
-                        <Link href="/home" className={clsx('more-btn')}>
+                        <Link href={`/search?key=${searchBox.text}`} className={clsx('more-btn')}>
                             See more
                         </Link>
                     )}

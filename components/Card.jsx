@@ -4,32 +4,37 @@ const clsx = block(styles);
 
 import Proptypes from 'proptypes';
 import { BsPlayCircleFill } from 'react-icons/bs';
+import Link from 'next/link';
 
-function Card({ poster, name, release, description = false }) {
+function Card({ description = false, info }) {
     return (
-        <div className={clsx('wrapper')}>
-            <div className={clsx('poster')}>
-                <img src={poster} alt={name} />
-                <span>
-                    <BsPlayCircleFill />
-                </span>
-            </div>
-            {description && (
-                <div className={clsx('description')}>
-                    <h3 className={clsx('name')}>{name}</h3>
-                    <span className={clsx('release')}>{release}</span>
+        <Link href={`/detail?media_type=${info.media_type}&id=${info.id}`}>
+            <div className={clsx('wrapper')}>
+                <div className={clsx('poster')}>
+                    <img
+                        src={info.poster_path || info.backdrop_path}
+                        alt={info.title || info.name}
+                    />
+                    <span>
+                        <BsPlayCircleFill />
+                    </span>
                 </div>
-            )}
-        </div>
+                {description && (
+                    <div className={clsx('description')}>
+                        <h3 className={clsx('name')}>{info.title || info.name}</h3>
+                        <span className={clsx('release')}>
+                            {info.release_date || info.first_air_date}
+                        </span>
+                    </div>
+                )}
+            </div>
+        </Link>
     );
 }
 
 Card.proptypes = {
-    poster: Proptypes.string.isRequired,
-    name: Proptypes.string,
-    release: Proptypes.string,
+    info: Proptypes.object.isRequired,
     description: Proptypes.bool,
-    detail: Proptypes.array,
 };
 
 export default Card;

@@ -9,7 +9,9 @@ import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import Card from './Card';
 import Carousel from './Carousel';
 
-function HomeSection({ title = '', list = [], carousel = false, path }) {
+function MovieSection({ title = '', list = [], carousel = false, path }) {
+    console.log(list);
+
     return (
         <section className={clsx('wrapper')}>
             <div className={clsx('header')}>
@@ -26,11 +28,7 @@ function HomeSection({ title = '', list = [], carousel = false, path }) {
                         {list.map((movie) => {
                             return (
                                 <div key={movie.id} className={clsx('poster-card')}>
-                                    <Card
-                                        poster={movie.poster_path || movie.backdrop_path}
-                                        name={movie.title || movie.name}
-                                        release={movie.release_date || movie.first_air_date}
-                                    />
+                                    <Card info={movie} />
                                 </div>
                             );
                         })}
@@ -40,12 +38,7 @@ function HomeSection({ title = '', list = [], carousel = false, path }) {
                         {list.map((movie) => {
                             return (
                                 <div key={movie.id} className={clsx('poster-card')}>
-                                    <Card
-                                        description
-                                        poster={movie.poster_path || movie.backdrop_path}
-                                        name={movie.title || movie.name}
-                                        release={movie.release_date || movie.first_air_date}
-                                    />
+                                    <Card description info={movie} />
                                 </div>
                             );
                         })}
@@ -56,11 +49,11 @@ function HomeSection({ title = '', list = [], carousel = false, path }) {
     );
 }
 
-HomeSection.prototype = {
+MovieSection.prototype = {
     title: Proptypes.string,
     list: Proptypes.array.isRequired,
     carousel: Proptypes.bool,
     path: Proptypes.string,
 };
 
-export default memo(HomeSection);
+export default memo(MovieSection);

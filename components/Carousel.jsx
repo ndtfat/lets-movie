@@ -5,7 +5,7 @@ const clsx = block(styles);
 import { useRef } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
-function Carousle({ children, info }) {
+function Carousle({ children }) {
     const ulRef = useRef();
     const listTranslateX = 8 * (150 + 10) - 10;
     let listPosLeft = 0;

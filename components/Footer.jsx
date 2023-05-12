@@ -30,6 +30,7 @@ function Footer() {
                         <p>
                             UI idea: <a href="https://www.themoviedb.org/">themoviedb</a>,{' '}
                             <a href="https://dribbble.com/">dribbble</a>,{' '}
+                            <a href="https://pinterest.com/">pinterest</a>,{' '}
                             <a href="https://www.netflix.com">netflix</a>,{' '}
                             <a href="https://flixtor.id/">flixtor.id</a>
                         </p>
